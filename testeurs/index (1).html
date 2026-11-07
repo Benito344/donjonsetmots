@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="fr" class="l-fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Teste Donjons &amp; Mots avant tout le monde – Avant-première Android</title>
+<meta name="description" content="Deviens testeur de Donjons &amp; Mots, le jeu de mots mêlés RPG en français. Android, gratuit, inscription en 2 minutes. / Become a tester of Donjons &amp; Mots, a word-search RPG for Android. Free.">
+<meta name="theme-color" content="#120d16">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Teste Donjons &amp; Mots avant tout le monde">
+<meta property="og:description" content="Le jeu de mots mêlés RPG en français. Android, gratuit, inscription en 2 minutes.">
+<meta property="og:image" content="https://benito344.github.io/donjonsetmots/testeurs/og-banniere.jpg">
+<meta property="og:url" content="https://benito344.github.io/donjonsetmots/testeurs/">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="cinzel-deco-900.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* ===================================================================
+   ⚠️  À COMPLÉTER PAR BEN AVANT LA MISE EN LIGNE
+   Colle ici l'adresse de ton Google Group, par exemple :
+   https://groups.google.com/g/donjons-et-mots-testeurs
+   Tant que c'est vide, le bouton « Rejoindre le groupe » reste grisé
+   et la page propose d'envoyer son Gmail par e-mail à la place.
+   =================================================================== */
+window.GROUPE_URL = "https://groups.google.com/g/donjons-et-mots-testeurs";
+
+/* Langue : ?lang=fr|en, sinon choix mémorisé, sinon langue du navigateur (français → FR, autre → EN). */
+(function(){
+  var l = null, q = (location.search.match(/[?&]lang=(fr|en)/) || [])[1];
+  try { l = q || localStorage.getItem("dm-lang"); } catch(e) { l = q; }
+  if (l !== "fr" && l !== "en") {
+    var n = (navigator.languages && navigator.languages[0]) || navigator.language || "fr";
+    l = /^fr/i.test(n) ? "fr" : "en";
+  }
+  var h = document.documentElement; h.className = "l-" + l; h.lang = l;
+})();
+</script>
+<style>
+@font-face{font-family:"Cinzel Decorative";src:url(cinzel-deco-900.woff2) format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Fredoka";src:url(fredoka.woff2) format("woff2");font-weight:300 700;font-display:swap}
+:root{
+  --bg:#120d16;--bg2:#1c1520;--card:#221a26;--card2:#2c2230;--line:#5a4630;--line2:#3a2e3c;
+  --ink:#f3e8cf;--muted:#b9a888;--gold:#ffd36a;--gold2:#e0a230;--gold3:#a8650a;--pumpkin:#ff8a2a;--green:#7fd38a;
+  --frame:linear-gradient(160deg,#fff0b8 0%,#d9a43a 22%,#7a4a14 48%,#e8b850 70%,#6a3a0e 100%);
+  --title:"Cinzel Decorative",Georgia,serif;--text:"Fredoka",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--text)}
+a{color:var(--gold)}
+.hero{position:relative;padding:28px 20px 8px;background:
+  linear-gradient(180deg,rgba(18,13,22,.35) 0%,rgba(18,13,22,.8) 55%,var(--bg) 100%),
+  url(fond-donjon.webp) center top/cover no-repeat}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+.hero .wrap{padding:0}
+.brand{display:flex;align-items:center;gap:14px}
+.icon{width:84px;height:84px;border-radius:22px;padding:3px;background:var(--frame);box-shadow:0 8px 26px rgba(255,190,80,.28)}
+.icon img{display:block;width:100%;height:100%;border-radius:19px}
+.tag{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--bg);background:linear-gradient(90deg,var(--gold),var(--gold2));padding:4px 10px;border-radius:999px}
+h1{font:900 31px/1.15 var(--title);margin:22px 0 12px;letter-spacing:.01em}
+h1 .gold{background:linear-gradient(180deg,#fff0b8,#ffd36a 45%,#e0a230);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:#e6dac0;margin:0 0 18px;font-size:17.5px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.pills li{border:1px solid var(--line);background:rgba(44,34,48,.85);border-radius:999px;padding:6px 13px;font-size:15px;white-space:nowrap}
+.pills li.hw{border-color:#b55a1a;color:#ffc08a}
+.strip{display:flex;justify-content:space-between;align-items:flex-end;margin:0 0 4px}
+.strip img{width:24%;max-width:120px;height:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.note{border:1.5px dashed var(--line);border-radius:16px;padding:14px 16px;display:flex;gap:14px;margin:18px 0;background:rgba(28,21,32,.6)}
+.note b.k{flex:0 0 74px;color:var(--green);font-weight:600;line-height:1.3}
+.note p{margin:0;color:#d9ccb0}
+.note.inapp b.k{color:var(--pumpkin)}
+.note.inapp{border-color:var(--pumpkin);border-style:solid;background:rgba(80,40,10,.35)}
+.note.ios{border-color:#c2554d;border-style:solid}
+.hide{display:none!important}
+h2{font:900 22px/1.25 var(--title);margin:34px 0 14px;color:var(--gold)}
+.step{position:relative;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line2);border-radius:20px;padding:20px 18px 20px 18px;margin:0 0 16px;box-shadow:0 8px 22px rgba(0,0,0,.45)}
+.step .hd{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--frame);display:grid;place-items:center;font:700 24px/1 var(--text);color:#2a1606;box-shadow:0 2px 0 rgba(0,0,0,.4)}
+.step h3{font:600 21px/1.25 var(--text);margin:0}
+.step p{margin:6px 0 12px;color:#d9ccb0}
+.btn{display:inline-block;text-decoration:none;font:600 17px/1 var(--text);padding:15px 22px;border-radius:14px;margin-top:4px;text-align:center}
+.btn.gold{color:#2a1606;background:linear-gradient(180deg,#ffe08a,#ffc94a 50%,#e0a230);box-shadow:0 4px 0 var(--gold3),0 8px 18px rgba(224,162,48,.3)}
+.btn.light{color:#2a1606;background:#f5efe2;box-shadow:0 4px 0 #b9a888}
+.btn.ghost{color:var(--gold);border:1.5px solid var(--gold2);padding:13px 18px;font-size:16px}
+.btn.off{background:#3a3040;color:#9b8ea0;box-shadow:none;pointer-events:none}
+.small{font-size:14.5px;color:var(--muted)}
+.fallback{margin-top:12px;padding-top:12px;border-top:1px solid var(--line2)}
+.shot{display:flex;gap:14px;align-items:center;margin:8px 0 0}
+.shot img{width:46%;max-width:200px;border-radius:16px;border:2px solid var(--line);box-shadow:0 10px 24px rgba(0,0,0,.55)}
+.shot p{margin:0;color:#d9ccb0;font-size:16px}
+.faq h3{font:600 18px/1.3 var(--text);margin:20px 0 4px;color:var(--ink)}
+.faq p{margin:0;color:#cdbfa3}
+.rgpd{background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;margin:30px 0 0;font-size:14.5px;color:#bfb196}
+.rgpd h2{font-size:17px;margin:0 0 8px}
+.rgpd ul{margin:6px 0 0;padding-left:18px}
+.rgpd li{margin:3px 0}
+footer{text-align:center;color:var(--muted);font-size:13.5px;padding:26px 20px 36px}
+footer a{color:var(--muted)}
+@media (min-width:600px){h1{font-size:38px}.hero{padding-top:44px}}
+
+.fr,.en{}
+html.l-fr .en,html.l-en .fr{display:none!important}
+.topbar{display:flex;justify-content:flex-end;margin:-10px 0 10px}
+.lang{display:inline-flex;border:1.5px solid var(--gold2);border-radius:999px;overflow:hidden;background:rgba(18,13,22,.75)}
+.lang button{font:700 15px/1 var(--text);letter-spacing:.06em;color:var(--gold);background:none;border:0;padding:9px 15px;cursor:pointer;min-width:52px}
+html.l-fr .lang [data-l=fr],html.l-en .lang [data-l=en]{background:linear-gradient(180deg,#ffe08a,#e0a230);color:#2a1606}
+.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 20px 14px;margin:0 -20px;scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.gallery figure{flex:0 0 62%;max-width:230px;margin:0;scroll-snap-align:center}
+.gallery img{display:block;width:100%;height:auto;aspect-ratio:420/934;border-radius:18px;border:2px solid var(--line);box-shadow:0 10px 24px rgba(0,0,0,.55);background:#000}
+.gallery figcaption{font-size:14.5px;color:#d9ccb0;margin-top:8px;line-height:1.35;text-align:center}
+.swipe{font-size:13.5px;color:var(--muted);margin:-6px 0 0;text-align:center}
+.enote{border:1.5px solid #4f7cff;border-radius:16px;padding:12px 16px;margin:0 0 16px;background:rgba(40,52,110,.35);color:#dfe6ff;font-size:15.5px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+ <div class="wrap">
+  <div class="topbar">
+   <div class="lang" role="group" aria-label="Langue / Language">
+    <button type="button" data-l="fr" aria-label="Français">FR</button><button type="button" data-l="en" aria-label="English">EN</button>
+   </div>
+  </div>
+  <div class="brand">
+   <div class="icon"><img src="icone.webp" width="78" height="78" alt="Donjons &amp; Mots"></div>
+   <span class="tag"><span class="fr">Avant-première Android</span><span class="en">Android early access</span></span>
+  </div>
+  <h1 class="fr">Teste <span class="gold">Donjons &amp; Mots</span> avant tout le monde</h1>
+  <h1 class="en">Play <span class="gold">Donjons &amp; Mots</span> before everyone else</h1>
+  <p class="lead fr">Le jeu de mots mêlés façon RPG, en français : chaque mot trouvé frappe le monstre. Gratuit, sur Android, inscription en 2&nbsp;minutes.</p>
+  <p class="lead en">A word-search RPG: every word you find hits the monster. Free, on Android, sign-up takes 2&nbsp;minutes.</p>
+  <ul class="pills fr" aria-label="Au programme">
+   <li>🔤 Mots mêlés RPG</li><li>🛡️ 3 héros</li><li>🏰 Donjons</li><li>🐉 Boss</li>
+   <li>⚔️ Arène</li><li>🦉 Familiers &amp; montures</li><li>🌍 Français &amp; anglais</li>
+  </ul>
+  <ul class="pills en" aria-label="Features">
+   <li>🔤 Word-search RPG</li><li>🛡️ 3 heroes</li><li>🏰 Dungeons</li><li>🐉 Bosses</li>
+   <li>⚔️ Arena</li><li>🦉 Pets &amp; mounts</li><li>🌍 French &amp; English</li>
+  </ul>
+  <div class="strip" aria-hidden="true">
+   <img src="phenix.webp" alt="" width="120" height="120">
+   <img src="dragon.webp" alt="" width="120" height="120">
+   <img src="dragon.webp" alt="" width="120" height="120">
+   <img src="monture-dragon.webp" alt="" width="120" height="120">
+  </div>
+ </div>
+</header>
+
+<main class="wrap">
+
+ <div class="enote en"><b>Language:</b> French and English are both in the game (pick in the menu). Feedback welcome either way.</div>
+
+ <div class="note inapp hide" id="inapp">
+  <b class="k"><span class="fr">Attention</span><span class="en">Warning</span></b>
+  <div><p class="fr">Tu es dans le navigateur de Facebook, Instagram ou TikTok : Google ne te reconnaîtra pas ici.</p>
+  <p class="en">You're in the Facebook, Instagram or TikTok browser: Google won't recognize you here.</p>
+  <a class="btn ghost" id="openChrome" href="#" style="margin-top:10px"><span class="fr">Ouvrir dans Chrome</span><span class="en">Open in Chrome</span></a></div>
+ </div>
+
+ <div class="note ios hide" id="ios">
+  <b class="k">iPhone</b>
+  <p class="fr">Le jeu est uniquement sur Android pour l'instant. Partage cette page à un ami qui a un téléphone Android&nbsp;!</p>
+  <p class="en">The game is Android-only for now. Share this page with a friend who has an Android phone!</p>
+ </div>
+
+ <div class="note">
+  <b class="k"><span class="fr">Dans Chrome</span><span class="en">Use Chrome</span></b>
+  <p class="fr">Ouvre cette page dans Chrome (menu ⋯ puis «&nbsp;Ouvrir dans le navigateur&nbsp;»), pas dans TikTok, Instagram ou Facebook. Sinon Google ne te reconnaît pas et les boutons ne marchent pas.</p>
+  <p class="en">Open this page in Chrome (⋯ menu, then “Open in browser”), not inside TikTok, Instagram or Facebook. Otherwise Google won't recognize you and the buttons won't work.</p>
+ </div>
+
+ <h2><span class="fr">Aperçu du jeu</span><span class="en">Screenshots</span></h2>
+ <div class="gallery" tabindex="0" aria-label="Captures du jeu / Screenshots">
+  <figure><img src="jeu-combat.webp" width="420" height="934" loading="lazy" alt="Combat : grille de mots mêlés contre la Reine araignée / Fight: word grid vs the Spider Queen"><figcaption><span class="fr">Chaque mot trouvé dans la grille frappe le monstre</span><span class="en">Every word you find in the grid hits the monster</span></figcaption></figure>
+  <figure><img src="jeu-heros-cheval.webp" width="420" height="934" loading="lazy" alt="Écran du héros à cheval / Hero on horseback"><figcaption><span class="fr">Ton héros, sa monture et son familier</span><span class="en">Your hero, mount and pet</span></figcaption></figure>
+  <figure><img src="jeu-carte.webp" width="420" height="934" loading="lazy" alt="Carte de la campagne / Campaign map"><figcaption><span class="fr">Une campagne de 100 niveaux sur la carte</span><span class="en">A 100-level campaign map</span></figcaption></figure>
+  <figure><img src="jeu-arene.webp" width="420" height="934" loading="lazy" alt="Combat dans l'arène / Arena fight"><figcaption><span class="fr">L'arène contre d'autres héros</span><span class="en">Arena fights against other heroes</span></figcaption></figure>
+  <figure><img src="jeu-donjon.webp" width="420" height="934" loading="lazy" alt="La Tour du donjon / Dungeon Tower"><figcaption><span class="fr">La Tour du donjon, étage par étage</span><span class="en">The Dungeon Tower, floor by floor</span></figcaption></figure>
+  <figure><img src="jeu-combat.webp" width="420" height="934" loading="lazy" alt="Combat dans la grille / Word combat in the grid"><figcaption><span class="fr">Chaque mot trouvé frappe le monstre</span><span class="en">Every word you find hits the monster</span></figcaption></figure>
+ </div>
+ <p class="swipe"><span class="fr">← Fais glisser pour voir la suite →</span><span class="en">← Swipe to see more →</span></p>
+
+ <h2><span class="fr">En 3 étapes</span><span class="en">3 easy steps</span></h2>
+
+ <section class="step">
+  <div class="hd"><span class="num">1</span><h3><span class="fr">Rejoins le groupe des testeurs</span><span class="en">Join the testers group</span></h3></div>
+  <p class="fr">Connecte-toi avec le compte Gmail de ton téléphone Android, puis appuie sur «&nbsp;Rejoindre le groupe&nbsp;».</p>
+  <p class="en">Sign in with the Gmail account of your Android phone, then tap “Join group”.</p>
+  <a class="btn light" id="btnGroupe" href="#" target="_blank" rel="noopener"><span class="fr">Rejoindre le groupe</span><span class="en">Join the group</span></a>
+  <div class="fallback small">
+   <span class="fr">Ça ne marche pas&nbsp;? Envoie-moi ton adresse Gmail par
+   <a href="mailto:behague.benjamin@gmail.com?subject=Testeur%20Donjons%20%26%20Mots&amp;body=Bonjour%20Ben%2C%0A%0AJe%20veux%20tester%20Donjons%20%26%20Mots.%20Mon%20adresse%20Gmail%20Android%20%3A%20">e-mail</a>
+   et je t'ajoute à la main.</span>
+   <span class="en">Not working? Send me your Gmail address by
+   <a href="mailto:behague.benjamin@gmail.com?subject=Tester%20Donjons%20%26%20Mots&amp;body=Hi%20Ben%2C%0A%0AI%27d%20like%20to%20test%20Donjons%20%26%20Mots.%20My%20Android%20Gmail%20address%3A%20">e-mail</a>
+   and I'll add you manually.</span>
+  </div>
+ </section>
+
+ <section class="step">
+  <div class="hd"><span class="num">2</span><h3><span class="fr">Active le test</span><span class="en">Turn on the test</span></h3></div>
+  <p class="fr">Sur ton téléphone, avec le même compte, appuie sur «&nbsp;Devenir testeur&nbsp;». Si ça ne marche pas tout de suite, attends 2-3&nbsp;minutes et réessaie.</p>
+  <p class="en">On your phone, with the same account, tap “Become a tester”. If it doesn't work right away, wait 2-3&nbsp;minutes and try again.</p>
+  <a class="btn gold" href="https://play.google.com/apps/testing/com.benetgarry.donjonsetmots" target="_blank" rel="noopener"><span class="fr">Devenir testeur</span><span class="en">Become a tester</span></a>
+ </section>
+
+ <section class="step">
+  <div class="hd"><span class="num">3</span><h3><span class="fr">Installe et joue</span><span class="en">Install and play</span></h3></div>
+  <p class="fr">Appuie sur «&nbsp;Télécharger sur Google Play&nbsp;» depuis la page du test, installe le jeu, choisis ton héros et lance-toi dans le donjon.</p>
+  <p class="en">Tap “Download it on Google Play” from the test page, install the game, pick your hero and dive into the dungeon.</p>
+  <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.benetgarry.donjonsetmots" target="_blank" rel="noopener"><span class="fr">Ouvrir sur Google Play</span><span class="en">Open in Google Play</span></a>
+ </section>
+
+ <div class="note">
+  <b class="k"><span class="fr">14 jours</span><span class="en">14 days</span></b>
+  <p class="fr">Le seul truc important&nbsp;: garde le jeu installé 14&nbsp;jours et ouvre-le de temps en temps. C'est ce que Google demande avant la sortie officielle.</p>
+  <p class="en">The only important thing: keep the game installed for 14&nbsp;days and open it now and then. That's what Google requires before the official release.</p>
+ </div>
+
+ <section class="faq fr">
+  <h2>Questions</h2>
+  <h3>Il faut un iPhone&nbsp;?</h3>
+  <p>Non, le jeu est sur Android uniquement pour l'instant (Android&nbsp;7 ou plus récent).</p>
+  <h3>C'est payant&nbsp;?</h3>
+  <p>Non, le jeu est gratuit et se joue entièrement sans payer.</p>
+  <h3>Je garde ma progression&nbsp;?</h3>
+  <p>Oui. À la sortie officielle, c'est le même jeu qui se met à jour&nbsp;: ton héros et ta progression sont gardés.</p>
+  <h3>Un bug, une idée&nbsp;?</h3>
+  <p>Écris à <a href="mailto:behague.benjamin@gmail.com">behague.benjamin@gmail.com</a>. Tous les retours sont les bienvenus, même critiques.</p>
+ </section>
+ <section class="faq en">
+  <h2>FAQ</h2>
+  <h3>Is it on iPhone?</h3>
+  <p>No, the game is Android-only for now (Android&nbsp;7 or newer).</p>
+  <h3>Is it in English?</h3>
+  <p>Yes. French and English are both available; you choose the language in the menu.</p>
+  <h3>Does it cost anything?</h3>
+  <p>No, the game is free and fully playable without paying.</p>
+  <h3>Do I keep my progress?</h3>
+  <p>Yes. At the official release, the same game simply updates: your hero and your progress are kept.</p>
+  <h3>Found a bug, got an idea?</h3>
+  <p>Write to <a href="mailto:behague.benjamin@gmail.com">behague.benjamin@gmail.com</a>. All feedback is welcome, even critical.</p>
+ </section>
+
+ <section class="rgpd fr" id="donnees">
+  <h2>Tes données</h2>
+  Cette page ne dépose aucun cookie et ne contient aucun traceur&nbsp;; seul ton choix de langue est retenu sur ton appareil. Si tu rejoins le groupe ou m'envoies ton adresse&nbsp;:
+  <ul>
+   <li>ton adresse Gmail sert <b>uniquement</b> à t'ouvrir l'accès au test et à te donner des nouvelles du test&nbsp;;</li>
+   <li>elle n'est ni publiée, ni vendue, ni partagée&nbsp;; la liste des membres du groupe n'est visible que par moi&nbsp;;</li>
+   <li>elle est supprimée à la fin du test, sauf si tu demandes à rester testeur&nbsp;;</li>
+   <li>tu peux quitter le groupe quand tu veux, ou demander l'accès ou la suppression de tes données à <a href="mailto:behague.benjamin@gmail.com">behague.benjamin@gmail.com</a>.</li>
+  </ul>
+  <p style="margin:10px 0 0">Responsable&nbsp;: Ben (Ben &amp; Garry). Détails dans la <a href="../confidentialite/">politique de confidentialité</a>.</p>
+ </section>
+ <section class="rgpd en">
+  <h2>Your data</h2>
+  This page sets no cookies and has no trackers; only your language choice is stored on your device. If you join the group or send me your address:
+  <ul>
+   <li>your Gmail address is used <b>only</b> to give you access to the test and send you test news;</li>
+   <li>it is never published, sold or shared; the group's member list is visible to me only;</li>
+   <li>it is deleted when the test ends, unless you ask to stay a tester;</li>
+   <li>you can leave the group at any time, or ask for access to or deletion of your data at <a href="mailto:behague.benjamin@gmail.com">behague.benjamin@gmail.com</a>.</li>
+  </ul>
+  <p style="margin:10px 0 0">Data controller: Ben (Ben &amp; Garry). Details in our <a href="../confidentialite/">privacy policy</a> (in French).</p>
+ </section>
+
+</main>
+
+<footer>
+ © 2026 Ben &amp; Garry · <a href="../">Donjons &amp; Mots</a> · <a href="../confidentialite/"><span class="fr">Confidentialité</span><span class="en">Privacy</span></a><br>
+ <span class="fr">Google Play est une marque de Google LLC.</span><span class="en">Google Play is a trademark of Google LLC.</span>
+</footer>
+
+<script>
+(function(){
+  var T = { fr:"Teste Donjons & Mots avant tout le monde – Avant-première Android", en:"Play Donjons & Mots before everyone else – Android early access" };
+  var h = document.documentElement;
+  function setLang(l, keep){
+    h.className = "l-" + l; h.lang = l; document.title = T[l];
+    if (keep) { try { localStorage.setItem("dm-lang", l); } catch(e) {} }
+  }
+  setLang(h.lang === "en" ? "en" : "fr", false);
+  document.querySelectorAll(".lang button").forEach(function(b){
+    b.addEventListener("click", function(){ setLang(b.getAttribute("data-l"), true); });
+  });
+
+  var ua = navigator.userAgent || "";
+  var g = document.getElementById("btnGroupe");
+  var url = (window.GROUPE_URL || "").trim();
+  if (/^https:\/\/groups\.google\.com\//.test(url)) { g.href = url; }
+  else { g.classList.add("off"); g.removeAttribute("href");
+    g.innerHTML = '<span class="fr">Groupe bientôt ouvert</span><span class="en">Group opening soon</span>'; }
+  var inApp = /FBAN|FBAV|FB_IAB|Instagram|musical_ly|Bytedance|TikTok|Snapchat|Line\//i.test(ua);
+  var android = /Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua);
+  if (inApp) {
+    document.getElementById("inapp").classList.remove("hide");
+    var o = document.getElementById("openChrome");
+    if (android) o.href = "intent://" + location.host + location.pathname + location.search + "#Intent;scheme=https;package=com.android.chrome;end";
+    else o.classList.add("hide");
+  }
+  if (ios) document.getElementById("ios").classList.remove("hide");
+})();
+</script>
+</body>
+</html>
